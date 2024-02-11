@@ -1,0 +1,56 @@
+<div class="d-flex" style="justify-content: center; ">
+
+    <div class="d-flex"
+        style="border: 3px solid rgb(20, 53, 97); width: 50%;justify-content: center;border-radius: 50px; margin-top:2rem; background-color:#5494dd;">
+
+        <form [formGroup]="reactiveForm" >
+
+            <input type="text" placeholder="Enter product name" maxlength="32" id="productName" name="productName"
+                pattern="[a-zA-z0-9- ]+$" style="margin-top: 2rem;width: 100%;" formControlName="productName" [(ngModel)]="product.productName">
+                <div *ngIf="productName && productName.invalid && productName.touched"  style="color: yellow;">Please enter a valid Product
+                    Name</div><br>
+
+            <input type="text" placeholder="Enter Company name" maxlength="32" name="companyName"
+                pattern="[a-zA-z0-9- ]+$" style="margin-top: 2rem;width: 100%;" formControlName="companyName" [(ngModel)]="product.companyName">
+                <div *ngIf="companyName && companyName.invalid && companyName.touched" style="color: yellow;">Please enter a valid Company
+                    Name</div><br>
+
+            <select  name="categoryID" style="margin-top: 2rem;width: 100%;" formControlName="categoryID" [(ngModel)]="product.categoryID">
+                <option >Select Category</option>
+                <option *ngFor="let Category of Categories" [value]="Category.categoryID">{{ Category.categoryName }}</option>
+                
+            </select><br>
+            <div *ngIf="categoryID && categoryID.touched && categoryID.invalid" style="color: yellow;">Please select the Category</div>
+
+            <p style="margin-top: 2rem; color: white;">Bought it from? (Online Store/Offline Market)</p>
+            <input type="radio" name="boughtFrom" id="Online" value="Online" formControlName="boughtFrom" [(ngModel)]="product.boughtFrom">
+            <label for="Online" style="margin-left: 0.5rem; color: white;">Online Store </label> <br>
+            <input type="radio" name="boughtFrom" id="Offline" value="Offline" formControlName="boughtFrom" [(ngModel)]="product.boughtFrom">
+            <label for="Offline" style="margin-left: 0.5rem; color: white;"> Offline Store</label>
+
+            <input type="text" name="price" placeholder="Enter price in rupees..."
+                pattern="^(\d*([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$" style="margin-top: 2rem;width: 100%;"
+                formControlName="price" [(ngModel)]="product.price"> <br>
+                <div *ngIf="price && price.touched && price.invalid" style="color: yellow;">Enter correct price here...</div><br>
+
+            <input *ngIf="product.productID" type="text" style="visibility: hidden;" name="productID" formControlName="productID" [(ngModel)]="product.productID" >
+
+            <inout *ngIf="!product.productID" type="text" style="visibility: hidden;" name="productID" formControlName="productID"></inout>
+
+            <div class="d-flex" style="justify-content: center;">
+                <button [disabled]="reactiveForm.invalid"  class="btn" (click)="OnClick(reactiveForm.value)"
+                    style="margin-bottom: 1.5rem; background-color: rgb(240, 240, 24);font-weight: 700; border: 1px black solid;">Submit Details
+                    </button> <!--[disabled]="reactiveForm.invalid"-->
+                <!-- <button [disabled]="reactiveForm.invalid" *ngIf="!productID" class="btn" (click)="OnClick(reactiveForm.value)"
+                    style="margin-bottom: 1.5rem; background-color: rgb(240, 240, 24);font-weight: 700; border: 1px black solid;">Update Submit
+                    </button> -->
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+

@@ -1,0 +1,194 @@
+<app-back-button></app-back-button>
+
+<!--<div class="container text-center">
+    <div
+        style="background-color: yellow;border-bottom: solid green 50px;border-left: 80px solid;border-right:80px solid;border-top:solid green 50px;border-radius:8px;font-weight: 500;">
+        <h4 style="text-align: center;padding-top: 3px;">My Profile</h4>
+    </div>
+
+    <div class="d-flex" style="justify-content: center; ">
+
+        <div class="d-flex"
+            style="border: 3px solid rgb(20, 53, 97); width: 50%;justify-content: center;border-radius: 50px; margin-top:2rem; background-color:#5494dd;">
+
+            
+
+            <form [formGroup]="profileForm">
+
+                <input type="text" placeholder="Full name" id="fullName" name="fullName" pattern="[a-zA-z0-9- ]+$"
+                    style="margin-top: 2rem;width: 100%;" formControlName="fullName" [(ngModel)]="fullName">
+                <!-- <div *ngIf="fullName && fullName.invalid && fullName.touched" style="color: yellow;">Please enter a
+                    valid Name</div><br> -->
+
+<!-- <input type="text" placeholder="email" name="email" style="margin-top: 2rem;width: 100%;"
+                    formControlName="email" [(ngModel)]="email">  -->
+<!-- <div *ngIf="email && email.invalid && email.touched" style="color: yellow;">Please enter a valid email
+                    ID</div><br> -->
+<!-- [(ngModel)]="product.companyName" -->
+
+<!-- <input type="password" placeholder="Enter password here..." minlength="8" maxlength="16"
+                    pattern="[a-zA-Z0-9@.!#*&]" name="password" style="margin-top: 2rem;width: 100%;"
+                    formControlName="password" [(ngModel)]="password"> -->
+<!-- <div *ngIf="password && password.invalid && password.touched" style="color: yellow;">Please enter valid Password</div> -->
+
+<!-- <input type="text" name="phn" placeholder="Enter your contact number.." pattern="[0-9]" maxlength="10"
+                    style="margin-top: 2rem;width: 100%;" formControlName="phn" [(ngModel)]="phn"> <br> -->
+<!-- <div *ngIf="phn && phn.touched && phn.invalid" style="color: yellow;">Enter Correct Phone Number...
+                </div><br> -->
+
+<!-- <select name="bldgrp" style="margin-top: 2rem;width: 100%;" formControlName="bldgrp"
+                    [(ngModel)]="bldgrp">
+                    <option>Select Bloodgroup</option>
+                    <option value="a+">A+</option>
+                    <option value="a-">A-</option>
+                    <option value="b+">B+</option>
+                    <option value="b-">B-</option>
+                    <option value="o+">O+</option>
+                    <option value="o-">O-</option> -->
+
+<!-- <option *ngFor="let Category of Categories" [value]="Category.categoryID">{{ Category.categoryName }}</option> -->
+
+<!-- </select><br> -->
+<!-- <div *ngIf="bldgrp && bldgrp.touched && bldgrp.invalid" style="color: yellow;">Please select the Blood
+                    Group</div> -->
+
+<!-- <p style="margin-top: 2rem; color: white;">Gender</p>
+                <input type="radio" name="gender" id="male" value="male" formControlName="gender" [(ngModel)]="gender">
+                <label for="male" style="margin-left: 0.5rem; color: white;">Male</label> <br>
+                <input type="radio" name="gender" id="female" value="female" formControlName="gender"
+                    [(ngModel)]="gender">
+                <label for="female" style="margin-left: 0.5rem; color: white;"> Female</label>
+                <input type="radio" name="gender" id="other" value="other" formControlName="gender"
+                    [(ngModel)]="gender">
+                <label for="other" style="margin-left: 0.5rem; color: white;"> Other</label>
+
+                <input type="date" name="birthdate" id="birthdate" formControlName="birthdate"
+                    style="margin-top: 2rem;width: 100%;" [(ngModel)]="birthdate"> -->
+<!-- <div *ngIf="birthdate && birthdate.invalid && birthdate.touched" style="color: yellow;">Please Select Your Birthdate</div><br> -->
+
+
+
+<!-- <input *ngIf="user.userId" type="text" style="visibility: hidden;" name="userId"
+                    formControlName="userId" [(ngModel)]="user.userId">
+
+                <input *ngIf="!user.userId" type="text" style="visibility: hidden;" name="userId"
+                    formControlName="user.userId">-->
+
+<!-- <div class="d-flex" style="justify-content: center;">
+                    <button [disabled]="profileForm.invalid" class="btn" (click)="OnClick(profileForm.value)"
+                        style="margin-bottom: 1.5rem; background-color: rgb(240, 240, 24);font-weight: 700; border: 1px black solid;">Submit
+                        Details
+                    </button> -->
+<!--[disabled]="reactiveForm.invalid"-->
+
+<!-- </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div> -->
+
+
+<div class="container text-center">
+    <div
+        style="background-color: yellow;border-bottom: solid green 50px;border-left: 80px solid;border-right:80px solid;border-top:solid green 50px;border-radius:8px;font-weight: 500;">
+        <h4 style="text-align: center;padding-top: 3px;">My Profile</h4>
+    </div>
+
+    <div class="d-flex" style="justify-content: center; ">
+
+        <div class="d-flex"
+            style="border: 3px solid rgb(20, 53, 97); width: 50%;justify-content: center;border-radius: 50px; margin-top:2rem; background-color:#5494dd;">
+
+            <form [formGroup]="profileForm">
+
+
+                <input type="text" placeholder="Full name" id="fullName" name="fullName" pattern="[a-zA-z0-9- ]+$"
+                    style="margin-top: 2rem;width: 100%;" formControlName="fullName" [(ngModel)]="user.fullName">
+                <div *ngIf="fullName && fullName.invalid && fullName.touched" style="color: yellow;">Please enter a
+                    valid Name</div><br>
+
+                <input type="text" placeholder="email" name="email" style="margin-top: 2rem;width: 100%;"
+                    formControlName="email" [(ngModel)]="user.email">
+                <div *ngIf="email && email.invalid && email.touched" style="color: yellow;">Please enter a valid email
+                    ID</div><br>
+
+                <input type="password" placeholder="Enter password here..." minlength="8" maxlength="16"
+                    name="password" style="margin-top: 2rem;width: 100%;"
+                    formControlName="password" [(ngModel)]="user.password">
+                <div *ngIf="password && password.invalid && password.touched" style="color: yellow;">Please enter valid
+                    Password</div>
+
+                <input type="text" name="phone" placeholder="Enter your contact number.."  maxlength="10"
+                    style="margin-top: 2rem;width: 100%;" formControlName="phone" [ngModel]="user.phone" > <br>
+                <div *ngIf="phone && phone.touched && phone.invalid" style="color: yellow;">Enter Correct Phone Number...
+                </div><br>
+
+                <select name="bloodgroup" style="margin-top: 2rem;width: 100%;" formControlName="bloodgroup" [(ngModel)]="user.bloodgroup" >
+                    <option>Select Bloodgroup</option>
+                    <option value="a+">A+</option>
+                    <option value="a-">A-</option>
+                    <option value="b+">B+</option>
+                    <option value="b-">B-</option>
+                    <option value="o+">O+</option>
+                    <option value="o-">O-</option>
+
+                    <!-- <option *ngFor="let Category of Categories" [value]="Category.categoryID">{{ Category.categoryName }}</option> -->
+
+                </select><br>
+                <div *ngIf="bloodgroup && bloodgroup.touched && bloodgroup.invalid" style="color: yellow;">Please select the Blood
+                    Group</div>
+
+                 <p style="margin-top: 2rem; color: white;">Gender</p>
+                <input type="radio" name="gender" id="male" value="male" formControlName="gender" [(ngModel)]="user.gender" >
+                <label for="male" style="margin-left: 0.5rem; color: white;">Male</label> <br>
+                <input type="radio" name="gender" id="female" value="female" formControlName="gender" [(ngModel)]="user.gender"  >
+                <label for="female" style="margin-left: 0.5rem; color: white;"> Female</label><br>
+                <input type="radio" name="gender" id="other" value="other" formControlName="gender" [(ngModel)]="user.gender"   > 
+                <label for="other" style="margin-left: 0.5rem; color: white;"> Other</label> <br>
+
+                <!-- <input type="date" name="birthdate" id="birthdate" formControlName="birthdate"
+                    style="margin-top: 2rem;width: 100%;" > 
+                 <div *ngIf="birthdate && birthdate.invalid && birthdate.touched" style="color: yellow;">Please Select Your Birthdate</div><br>  -->
+
+                    <div class="d-flex" style="justify-content:flex-start;"> 
+                        <span style="margin-top: 1rem;color: white;margin-right: 2rem;margin-left: 1.5rem;">Upload your Image:</span>
+                        <input  type="file" style="margin-top: 2rem;width: 100%;"  (change)="onFileSelected($event)"  name="image" >
+                        <!--[(ngModel)]="user.image" formControlName="image" -->
+                        <!-- <input *ngIf(user.image) type="file" style="margin-top: 2rem;width: 100%;background-color: yellow;" formControlName="image" name="image" src="user.image" > -->
+                    </div>
+
+                    <div class="d-flex" style="justify-content: center;margin-top: 1rem;" >
+
+                        <img [src]="user.image" alt="imgfrmBackend" *ngIf="user.image" style="width: 9rem;height:10rem">
+
+                    </div>
+                    
+
+                    <!-- <div>
+                        <img src="this.base64Image" alt="Profile Image"  />
+                        <p >{{this.base64Image}}</p>
+                    </div> -->
+
+                 <input  type="text" style="visibility: hidden;" name="userID"
+                    formControlName="userID" [(ngModel)]="user.userID" >
+
+              
+
+                <div class="d-flex" style="justify-content: center;">
+                    <button  class="btn" (click)="OnClick(profileForm.value)"
+                        style="margin-bottom: 1.5rem; background-color: rgb(240, 240, 24);font-weight: 700; border: 1px black solid;">Submit
+                        Details
+                    </button>
+                <!--[disabled]="profileForm.invalid"-->
+                </div>
+
+                <!-- <button class="btn btn-secondary" (click)="OnClick(profileForm.value)">Submit Details</button> -->
+
+            </form>
+        </div>
+    </div>
+</div>

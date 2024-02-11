@@ -1,0 +1,277 @@
+<!-- <app-header></app-header> -->
+<app-back-button></app-back-button>
+<br><br><br>
+
+
+<div class="modal" tabindex="-1" id="deleteProductModal" style="display: none;" #deleteProductModal >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure you want to delete this?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p> You won't get it back once it's deleted !</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" #deleteProductModal  (click)="deleteFinal()">Yes </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="d-flex" style="justify-content: center;">
+    <h3 style="color: rgb(14, 30, 121)">Add Products from here:</h3>
+</div>
+<br>
+
+
+
+<div class="d-flex" style="justify-content: center;">
+    <button (click)="showForm()" class="btn" style="background-color: #5494dd;color: white;font-weight: 600;">Add
+        Product</button>
+</div>
+<app-form *ngIf="display" [product]="selectedProduct" (productAdd)="productAdd($event)"></app-form>
+<!--  Previously Added: [editProduct] = "selectedProduct" -->
+
+
+<br><br><br>
+
+
+
+<div style="background-color:rgb(101, 127, 175);border: 2px solid rgb(20, 53, 97);">
+    <br><br>
+    <div class="d-flex" style="justify-content: center;">
+        <h3 style="color: yellow; ">Here is the products list:</h3>
+    </div>
+    <br>
+
+
+
+
+
+    <div class="d-flex" style="justify-content: center;font-weight: 600;color:white">Filter By:</div>
+    <div class="d-flex" style="justify-content: space-evenly;">
+        <!-- <button class="btn btn-primary" (click)="filterBy()" >Offline</button> -->
+        <div style="padding-top: 0.5rem;">
+            <label for="boughtFrom" style="color:whitesmoke;align-items: center;">Bought From:</label>
+            <select id="boughtFrom" [(ngModel)]="selectedBoughtFrom" (change)="filterBy()">
+                <option value="">Select</option>
+                <option value="Online">Online</option>
+                <option value="Offline">Offline</option>
+            </select>
+        </div>
+
+        <div style="padding-top: 0.5rem;">
+            <label for="category" style="color:whitesmoke;align-items: center;">Category:</label>
+            <select id="category" [(ngModel)]="selectedCategory" (change)="filterBy()">
+                <option value="">Select</option>
+                <option *ngFor="let Category of Categories" [value]="Category.categoryName">{{ Category.categoryName }}
+                </option>
+            </select>
+
+
+        </div>
+
+        <div class="d-flex" style="justify-content: center;color:whitesmoke;align-items: center;margin-bottom:1rem;">
+            Search here:
+            <input type="text" [(ngModel)]="searchQuery" placeholder="Enter your search query">
+            <button type="submit" class="btn btn-primary" (click)="search()">Search</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<br>
+<br>
+<div style="border: 1px solid rgb(1, 1, 2);">
+    <!-- (edit)="editHandler($event)" (remove)="removeHandler($event)"  -->
+
+
+
+    <!-- <form novalidate #myForm="ngForm"> -->
+
+    <kendo-grid [kendoGridBinding]="gridData">
+
+        <!--[sortable]="{
+            allowUnsort:true,
+            mode:'multiple'
+            [pageable]="true"
+            [pageSize]="5"
+        }"-->
+
+        <kendo-grid-column field="companyName" title="CompanyName">
+            <ng-template kendoGridHeaderTemplate>
+                <div class="d-flex align-items-center">
+                    <span>CompanyName</span>
+                    <button class="btn " (click)="sortbyCompanyNameAsc()" style="background-color: whitesmoke;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                        </svg></button>
+                    <button class="btn " (click)="sortbyCompanyNameDesc()" style="background-color: whitesmoke;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
+                        </svg></button>
+                </div>
+            </ng-template>
+
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <kendo-textbox [(ngModel)]="dataItem.companyName" name="CompanyName" required></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+
+
+        <kendo-grid-column field="productName" title="ProductName">
+            <ng-template kendoGridHeaderTemplate>
+                <div class="d-flex align-items-center">
+                    <span>ProductName</span>
+                    <button class="btn " (click)="sortbyProductNameAsc()" style="background-color: whitesmoke;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                        </svg></button>
+                    <button class="btn " (click)="sortbyProductNameDesc()" style="background-color: whitesmoke;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
+                        </svg></button>
+                </div>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <kendo-textbox [(ngModel)]="dataItem.productName" name="ProductName" required></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="category.categoryName" title="Category">
+            <ng-template kendoGridHeaderTemplate>
+                <div class="d-flex align-items-center">
+                    <span>Category</span>
+                    <button class="btn " (click)="sortbyCategoryAsc()" style="background-color: whitesmoke;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                        </svg></button>
+                    <button class="btn " (click)="sortbyCategoryDesc()" style="background-color: whitesmoke;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
+                        </svg></button>
+                </div>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <kendo-textbox [(ngModel)]="dataItem.category" name="Category" required></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="boughtFrom" title="Bought From?">
+            <ng-template kendoGridHeaderTemplate>
+                <div class="d-flex align-items-center">
+                    <span>Bought From?</span>
+                    <button class="btn " (click)="boughtFromAsc()" style="background-color: whitesmoke;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                        </svg></button>
+                    <button class="btn " (click)="boughtFromDesc()" style="background-color: whitesmoke;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
+                        </svg></button>
+                </div>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <kendo-textbox [(ngModel)]="dataItem.boughtFrom" name="boughtFrom" required></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="price" title="Price">
+            <ng-template kendoGridHeaderTemplate>
+                <div class="d-flex align-items-center">
+                    <span>Price</span>
+                    <button class="btn " (click)="priceAsc()" style="background-color: whitesmoke;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                        </svg></button>
+                    <button class="btn " (click)="priceDesc()" style="background-color: whitesmoke;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
+                        </svg></button>
+                </div>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <kendo-textbox [(ngModel)]="dataItem.price" name="price" required></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+
+
+        <kendo-grid-command-column title="Commands">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <button kendoGridEditCommand class="btn btn-primary" (click)="editHandler(dataItem)">Edit</button>
+                <!-- <button kendoGridRemoveCommand class="btn btn-danger" (click)="removeHandler(dataItem)">Remove</button> -->
+                <button kendoGridRemoveCommand class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#deleteProductModal" (click)="deleteModal(dataItem)">Remove</button>
+
+
+            </ng-template>
+        </kendo-grid-command-column>
+
+       
+
+    </kendo-grid>
+
+</div>
+
+<br><br>
+
+
+
+<div class="d-flex"
+    style="justify-content: space-evenly; background-color:rgb(101, 127, 175);border:2px solid rgb(20, 53, 97);">
+    <button class="btn btn-secondary" style="margin-bottom: 2rem; font-weight:600;align-items: center;"
+        (click)="previousPage()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+            class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+        </svg></button>
+
+    <ng-container *ngIf="currentPage !== 0">
+        <span>{{ currentPage }} / {{ totalPages }}</span>
+    </ng-container>
+
+    <ng-container *ngIf="currentPage == 0">
+        <span></span>
+    </ng-container>
+
+    <button class="btn btn-secondary" style="margin-bottom: 2rem; font-weight:600;align-items: center;"
+        (click)="nextPage()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+            class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+        </svg></button>
+</div>

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding: 0rem;">
+    <div class="d-flex" style="justify-content: center;">
+
+    </div>
+    <div class="container-fluid" style="background-color:skyblue;">
+      <a class="navbar-brand main-heading" routerLink="Home" href="#" style="color: yellow;font-weight: 700;">BetterVersionHub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="height: 3rem;">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          
+          <li class="nav-item  ">
+            <a class="nav-link active heading" aria-current="page" routerLink="Home" style="color: white;">Home</a>
+          </li>
+          <li class="nav-item  ">
+            <a class="nav-link heading" routerLink="to-do-list/my-list" style="color: white;">To-Do List</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link heading" routerLink="Home" style="color: white;">Explore Books</a>
+          </li>
+          
+          <li class="nav-item ">
+            <a class="nav-link heading" routerLink="kendo-list/kendo-table" style="color: white;">Product Page</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link heading" routerLink="testcomponent" style="color: white;">Test Component</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link heading" routerLink="testmodule/testfile" style="color: white;">Test Module/Test File</a>
+          </li>
+
+         
+
+          <li>
+            
+          </li>
+
+          
+           
+        </ul>
+       
+      </div>
+
+      <a style="margin-right: 2rem;" routerLink="my-profile" (click)="openMyProfile()" >
+        <div>
+          <img [src]="this.user.image"  alt="My-Profile" style="height: 2.5rem;width: 2.5rem;border-radius: 50%;">
+        </div>
+      </a>
+      <div style="background-color: red; margin-right:2rem;height: 2.5rem; width: 4.5rem;align-items: center;justify-content: center;border-radius: 10px;">
+        <a class="nav-link heading btn" (click)="logOut()" style="color: white;font-weight: 600;padding-top: 0.5rem;">Log Out</a>
+      </div>
+        
+    
+
+    </div>
+  </nav>
+
